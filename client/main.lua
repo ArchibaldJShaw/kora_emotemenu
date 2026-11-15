@@ -494,7 +494,7 @@ local function registerMenuApp()
     if ok then appRegistered = true return true end
     if not appWarned then
         appWarned = true
-        print(('^3[kora_emotemenu] The App Shell menu style is unavailable (%s). Falling back to the radial style.^7'):format(tostring(err)))
+        Kora.logging.warn('menu.app_style_unavailable', 'The App Shell menu style is unavailable; falling back to the radial style', { error = tostring(err) })
     end
     return false
 end
@@ -508,7 +508,7 @@ local function openAppPages(items)
         appRegistered = false
         if not appWarned then
             appWarned = true
-            print(('^3[kora_emotemenu] The App Shell menu could not be updated (%s). Falling back to the radial style.^7'):format(tostring(err)))
+            Kora.logging.warn('menu.app_update_failed', 'The App Shell menu could not be updated; falling back to the radial style', { error = tostring(err) })
         end
         return nil
     end
